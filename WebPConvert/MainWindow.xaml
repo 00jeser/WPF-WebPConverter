@@ -50,9 +50,9 @@
                 <ComboBoxItem Content="text"/>
             </ComboBox>
         </Grid>
-        <ListBox Grid.Row="2" x:Name="lst">
+        <WrapPanel Grid.Row="2" x:Name="lst">
             
-        </ListBox>
+        </WrapPanel>
         <Button Grid.Row="2" Click="Button_Click">
             Выбрать файлы
         </Button>

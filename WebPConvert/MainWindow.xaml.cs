@@ -66,8 +66,9 @@ namespace WebPConvert
             {
                 var im = new Image();
                 im.Height = 100;
-                im.Source = new BitmapImage(new Uri(file, UriKind.Absolute));
-                lst.Items.Add(im);
+                var btm = new MyBitmapImage(file, 100, 100);
+                im.Source = btm.ResetReducedImage();
+                lst.Children.Add(im);
             }
         }
 
@@ -96,6 +97,52 @@ namespace WebPConvert
                     //p.WaitForExit();
                 }
             }
+        }
+
+
+    }
+    public class MyBitmapImage
+    {
+        public int DecodeWidth { set; get; }
+        public int DecodeHeight { set; get; }
+        public string UriSource;
+        public BitmapImage ReducedImage
+        {
+            get
+            {
+                return ResetReducedImage();
+            }
+            set
+            {
+                ReducedImage = value;
+            }
+        }
+        public MyBitmapImage(string uri, int w, int h)
+        {
+            DecodeWidth = w;
+            DecodeHeight = h;
+            UriSource = uri;
+        }
+        public BitmapImage ResetReducedImage()
+        {
+            #region 
+            BitmapImage _reducedImage = null;
+            MemoryStream mem;
+            // Only load thumbnails
+            byte[] buffer = File.ReadAllBytes(UriSource);
+            mem = new MemoryStream(buffer);
+            _reducedImage = new BitmapImage();
+            _reducedImage.BeginInit();
+            _reducedImage.CacheOption = BitmapCacheOption.None;
+            _reducedImage.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
+            _reducedImage.DecodePixelWidth = DecodeWidth;
+            _reducedImage.DecodePixelHeight = DecodeHeight;
+            _reducedImage.StreamSource = mem;
+            _reducedImage.Rotation = Rotation.Rotate0;
+            _reducedImage.EndInit();
+            buffer = null;
+            return _reducedImage;
+            #endregion
         }
     }
 }
