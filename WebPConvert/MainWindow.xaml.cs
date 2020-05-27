@@ -90,7 +90,7 @@ namespace WebPConvert
                     }
                     else
                     {
-                        p.StartInfo.Arguments = $"-q {(int)q.Value} -preset {(preset.SelectedItem as ComboBoxItem).Content.ToString()}";
+                        p.StartInfo.Arguments = $"\"{file}\" -o \"{path}\\{i}.webp\" -q {(int)q.Value} -preset {(preset.SelectedItem as ComboBoxItem).Content.ToString()}";
                     }
                     p.Start();
                     //p.WaitForExit();
