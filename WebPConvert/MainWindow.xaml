@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebPConvert"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="800" Height="450" Width="800">
+        Title="WPF WebP Convert" MinHeight="450" MinWidth="800" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" MinHeight="245"/>
             <RowDefinition Height="5"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*" MinHeight="100"/>
         </Grid.RowDefinitions>
         <Grid Margin="5,5,5,0">
             <Grid.ColumnDefinitions>
